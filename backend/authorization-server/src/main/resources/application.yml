@@ -1,0 +1,38 @@
+server:
+  port: 9000
+
+logging:
+  level:
+    org.springframework.security: trace
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    #defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      schema-locations:
+        - 'classpath:org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql'
+        - 'classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql'
+        - 'classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql'
+
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+jwt:
+  key:
+    public: classpath:app.pub
+    private: classpath:app.key
+  encryptor:
+    password: password
+    salt: 626F6F746966756C
